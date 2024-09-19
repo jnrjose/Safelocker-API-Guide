@@ -1,0 +1,35 @@
+---
+title: "Validate Transfer Request"
+api: "POST /transfer/validate"
+description: "This allows you to validate a transfer request with the use of the provided OTP"
+---
+
+<ParamField header="requestId" type="string" required />
+<ParamField body="transactionId" type="string" required>
+  The unique identifier for the transaction, returned after initiating a transfer request.
+</ParamField>
+<ParamField body="otpReferenceId" type="string" required>
+  The reference ID for the OTP, returned after initiating a transfer request.
+</ParamField>
+<ParamField body="otp" type="string" required>
+  The one-time password sent to the phone number associated with the source account.
+</ParamField>
+<ResponseExample>
+
+```json
+{
+	"statusCode": 00,
+	"message": "Completed successfully"
+	"data": {
+		"amount": 1213211231,
+		"beneficiaryAccountName": "Peter Parker",
+		"beneficiaryAccountNumber": "1234567890",
+		"beneficiaryBankCode": "001001",
+		"transactionId": "txn_0011223344",
+		"narration": "Transfer to John Doe"
+	},
+	"errors": []
+}
+```
+
+</ResponseExample>

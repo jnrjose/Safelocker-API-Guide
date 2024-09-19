@@ -1,0 +1,33 @@
+---
+title: "Personal Account"
+api: "POST /account/bank/create/personal"
+---
+
+<ParamField header="requestId" type="string" required />
+<ParamField body="customerId" type="string" required>
+	The unique identifier for the customer on the Edge platform.
+</ParamField>
+<ParamField body="type" type="string" default="savings">
+	Possible values: '**savings**' or '**current**'
+</ParamField>
+
+<Info>
+	- If no **type** is specified, a Savings account will be created by default. 
+	- If '**current**' is specified as the **type**, the account creation will only be successful if the customer has been KYCed up to Tier 2.
+</Info>
+
+<ResponseExample>
+
+```json
+{
+	"statusCode": 00,
+	"message": "Account successfully created",
+	"data": {
+		"accountNumber": "1951145523",
+		"accountName": "Tony Stark"
+	},
+	"errors": []
+}
+```
+
+</ResponseExample>

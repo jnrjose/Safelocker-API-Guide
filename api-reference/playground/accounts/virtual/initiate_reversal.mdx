@@ -1,0 +1,26 @@
+---
+title: "Reverse Funds"
+description: "This endpoint is used to reverse the latest amount collected into a dynamic virtual account"
+api: "POST /account/virtual/reverse/{reversalId}"
+---
+
+<ParamField header="requestId" type="string" required />
+<ParamField path="reversalId" type="string" required></ParamField>
+
+<Info>
+	The reversal can only be called once the account has entered status
+	'**inactive**'
+</Info>
+
+<ResponseExample>
+
+```json
+{
+	"statusCode": 00,
+	"message": "Funds reversed",
+	"data": {},
+	"errors": []
+}
+```
+
+</ResponseExample>

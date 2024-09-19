@@ -1,0 +1,20 @@
+---
+title: "Retrieve Active Banks"
+api: "Get /transfer/banks"
+description: "This allows you to retrieve a list of active banks eligible for fund transfers."
+---
+
+<ParamField header="requestId" type="string" required />
+<ResponseExample>
+
+```json
+{
+	"status": "00",
+	"message": "Completed successfully",
+	"data": {
+		"banks": []
+	}
+}
+```
+
+</ResponseExample>

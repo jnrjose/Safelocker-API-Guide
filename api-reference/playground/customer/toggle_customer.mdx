@@ -1,0 +1,23 @@
+---
+title: "Enable/Disable Customer"
+api: "POST /customer/profile/{customerId}"
+description: "This endpoint disenables/enables a customer created by you"
+---
+
+<ParamField header="requestId" type="string" required />
+<ParamField path="customerId" type="string" required />
+
+<ResponseExample>
+
+```json
+{
+	"statusCode": "00",
+	"message": "Customer Profile Successfully Deactivated",
+	"data": {},
+		"dateAdded": "2024-07-10T10:16:11.047"
+	},
+	"errors": []
+}
+```
+
+</ResponseExample>

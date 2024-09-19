@@ -1,0 +1,31 @@
+---
+title: "Name Enquiry"
+api: "POST /transfer/name-enquiry"
+description: "This allows you validate the name on an account"
+---
+
+<ParamField header="requestId" type="string" required />
+<ParamField body="accountNumber" type="string" required>
+	A NUBAN account number
+</ParamField>
+<ParamField body="bankCode" type="string" required>
+	The code of the bank in which the account is domiciled
+</ParamField>
+
+<ResponseExample>
+
+```json
+{
+	"statusCode": 00,
+	"message": "Completed successfully"
+	"data": {
+      "sessionId": "1234787090",
+      "accountName": "Bruce Banner",
+      "accountNumber": "1234567890",
+      "bank": "Sterling Bank"
+    },
+	"errors": []
+}
+```
+
+</ResponseExample>

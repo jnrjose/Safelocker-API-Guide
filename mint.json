@@ -1,91 +1,154 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
-  "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
-  },
-  "favicon": "/favicon.svg",
-  "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
-  },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
-  },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
-    }
-  ],
-  "navigation": [
-    {
-      "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "development"
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
-      ]
-    }
-  ],
-  "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
-  }
+	"$schema": "https://mintlify.com/schema.json",
+	"name": "Edge API Documentation",
+	"logo": {
+		"light": "/images/logo/sec/black.svg",
+		"dark": "/images/logo/sec/white.svg"
+	},
+	"favicon": "/edge_favicon.png",
+	"colors": {
+		"primary": "#0069ED",
+		"light": "#4D9CFF",
+		"dark": "#0050B4",
+		"background": {
+			"light": "#FFFFFF",
+			"dark": "#021038"
+		}
+	},
+	"topbarLinks": [
+		{
+			"name": "Join The Community",
+			"url": "https://join.slack.com/t/buildwithedge/shared_invite/zt-2prx0ig9j-0DDjwZDiUvxKUWh~twjvJg"
+		}
+	],
+	"topbarCtaButton": {
+		"name": "Get Started",
+		"url": "https://dev.withedge.co/"
+	},
+	"tabs": [
+		{
+			"name": "API Reference",
+			"url": "api-reference"
+		}
+	],
+	"navigation": [
+		{
+			"group": "Home",
+			"pages": [
+				"home/introduction",
+				"home/onboarding",
+				"home/authentication",
+				"home/encryption",
+				"home/environments",
+				"home/response",
+				"home/webhook",
+				"home/indempotency",
+				"home/compliance",
+				"home/fees",
+				{
+					"group": "Going Live",
+					"pages": [
+						"home/live/going-live",
+						"home/live/checklist",
+						"home/live/compliance",
+						"home/live/security"
+					]
+				}
+			]
+		},
+		{
+			"group": "API Documentation",
+			"pages": [
+				{
+					"group": "Getting Started",
+					"pages": [
+						"api-reference/authentication",
+						"api-reference/playground/auth/get_token"
+					]
+				},
+				{
+					"group": "Customer",
+					"pages": [
+						"api-reference/customers",
+						"api-reference/playground/customer/profile_customer",
+						"api-reference/playground/customer/profile_business",
+						"api-reference/playground/customer/get_customer",
+						"api-reference/playground/customer/update_customer",
+						"api-reference/playground/customer/get_customers",
+						"api-reference/playground/customer/toggle_customer",
+						"api-reference/playground/customer/customerKYC"
+					]
+				},
+				{
+					"group": "Account",
+					"pages": [
+						"api-reference/accounts",
+						{
+							"group": "Bank Accounts",
+							"pages": [
+								{
+									"group": "Open Bank Accounts",
+									"pages": [
+										"api-reference/playground/accounts/regular/create_personal_account",
+										"api-reference/playground/accounts/regular/create_corp_account"
+									]
+								},
+								"api-reference/playground/accounts/regular/account_details",
+								"api-reference/playground/accounts/regular/account_statement",
+								"api-reference/playground/accounts/regular/get_accounts",
+								"api-reference/playground/accounts/regular/freeze_account"
+							]
+						},
+						{
+							"group": "Virtual Accounts",
+							"pages": [
+								{
+									"group": "Create Virtual Accounts",
+									"pages": [
+										"api-reference/playground/accounts/virtual/create_dynamic_account",
+										"api-reference/playground/accounts/virtual/create_dedicated_account"
+									]
+								},
+								"api-reference/playground/accounts/virtual/account_details",
+								"api-reference/playground/accounts/virtual/get_accounts",
+								"api-reference/playground/accounts/virtual/transaction_hist",
+								"api-reference/playground/accounts/virtual/initiate_reversal",
+								"api-reference/playground/accounts/virtual/sweep"
+							]
+						},
+						{
+							"group": "Shared Functions",
+							"pages": [
+								"api-reference/playground/accounts/shared/close_accounts"
+							]
+						}
+					]
+				},
+				{
+					"group": "Transfers",
+					"pages": [
+						"api-reference/transfers",
+						"api-reference/playground/transfers/get_banks",
+						"api-reference/playground/transfers/name_enquiry",
+						"api-reference/playground/transfers/initiate_transfer",
+						"api-reference/playground/transfers/process_transfer",
+						"api-reference/playground/transfers/check_status"
+					]
+				}
+			]
+		}
+	],
+	"footerSocials": {
+		"twitter": "https://x.com/buildwithedge",
+		"linkedin": "https://www.linkedin.com/company/buildwithedge",
+		"website": "https://withedge.co/",
+		"youtube": "https://youtube.com/@buildwithedge",
+		"blog": "https://blog.withedge.co"
+	},
+	"api": {
+		"baseUrl": "https://devapi.withedge.co/gateway/api/v1",
+		"auth": {
+			"method": "bearer"
+		}
+	}
 }

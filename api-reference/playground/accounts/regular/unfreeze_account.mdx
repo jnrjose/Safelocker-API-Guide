@@ -1,0 +1,26 @@
+---
+title: "Unfreeze Account"
+description: "This endpoint is used to send a request to unfreeze a customer's account."
+api: "POST /account/bank/freeze"
+---
+
+<ParamField body="accountNumber" type="string" required>
+	The account number that a freeze is to be done against
+</ParamField>
+<ParamField body="reason" type="string" required>
+	The reason for which the freeze is requested
+</ParamField>
+<ParamField body="freeze" type="boolean" default={false} required />
+
+<ResponseExample>
+
+```json
+{
+	"statusCode": 00,
+	"message": "Account successdully frozen",
+	"data": {},
+	"errors": []
+}
+```
+
+</ResponseExample>
