@@ -35,17 +35,17 @@
     {
       "name": "Documentation",
       "icon": "book-open",
-      "url": "https://mintlify.com/docs"
+      "url": "https://feztechnology.mintlify.app/"
     },
     {
-      "name": "Community",
+      "name": "Support",
       "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "url": "https://fezdelivery.co"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://fezdelivery.co/blog"
     }
   ],
   "navigation": [
