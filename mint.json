@@ -37,18 +37,13 @@
       "pages": [
         "introduction",
         "quickstart",
-        "development"
+        "Environment"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Going Live",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "essential/switching"
       ]
     },
     {
@@ -67,8 +62,8 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "x": "https://x.com/fezdelivery",
+    "instagram": "https://instagram.com",
+    "linkedin": "https://linkedin.com/company/fezdelivery"
   }
 }
