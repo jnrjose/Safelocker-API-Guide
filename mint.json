@@ -5,7 +5,7 @@
     "dark": "/logo/Fezlogo_white.png",
     "light": "/logo/fez-logo.png"
   },
-  "favicon": "/fezicon.png",
+  "favicon": "/logo/fezicon.png",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
@@ -22,30 +22,13 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
+    "name": "Get Started",
     "url": "https://dashboard.fezdelivery.co"
   },
   "tabs": [
     {
       "name": "API Reference",
       "url": "reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open",
-      "url": "https://feztechnology.mintlify.app/"
-    },
-    {
-      "name": "Support",
-      "icon": "slack",
-      "url": "https://fezdelivery.co"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://fezdelivery.co/blog"
     }
   ],
   "navigation": [
