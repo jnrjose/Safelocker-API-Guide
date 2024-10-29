@@ -1,86 +1,117 @@
 ---
-title: 'Quickstart'
-description: 'Start building awesome documentation in under 5 minutes'
+title: Quick Start Guide
+description: Get started with the Safe Locker API by Fez SafeLocker, including sign-up, obtaining API credentials, and making your first API call.
 ---
 
-## Setup your development
+Welcome to the **Safe Locker API**! This guide will help you get up and running with the Safe Locker API, covering account creation, obtaining API credentials, and making your first authenticated API request. Follow these steps to start integrating secure locker management into your application.
 
-Learn how to update your docs locally and deploy them to the public.
+---
 
-### Edit and preview
+## Step 1: Sign Up for a Safe Locker Account
 
-<AccordionGroup>
-  <Accordion icon="github" title="Clone your docs locally">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Preview changes">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
-  </Accordion>
-</AccordionGroup>
+1. **Navigate to the Sign-Up Page**: Go to the Fez SafeLocker portal at [https://portal.fezdelivery.co/signup](https://portal.fezdelivery.co/signup).
+2. **Fill in the Registration Form**: Provide the necessary information:
+   - **Name**: Full name of the representative.
+   - **Email**: Business email address for account communication.
+   - **Organization Details**: Business name, registration number, and contact information.
 
-### Deploy your changes
+3. **Complete Registration**: Submit the form to create your account.
+4. **Verify Your Email**: After signing up, check your email for a verification link. Click the link to verify your account 
+5. **Create Password**: A secure password for accessing the account and activate API access.
 
-<AccordionGroup>
+---
 
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
-</Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
-</Accordion>
+## Step 2: Obtain Your API Credentials
 
-</AccordionGroup>
+Once your account is activated, follow these steps to obtain the API credentials required for making requests:
 
-## Update your docs
+1. **Log in to Your Dashboard**: Head to the Fez SafeLocker dashboard at [https://portal.fezdelivery.co/login](https://portal.fezdelivery.co/login) and enter your registered email and password.
+2. **Navigate to API Settings**:
+   - In your dashboard, locate the **API Settings** or **Developer** section.
+   - Click **Create API Key** to generate a new API key for your application.
+3. **Save Your API Key and Secret**:
+   - Once generated, the API key and secret will be displayed. Copy and store them in a secure location, as they will be used for authenticating requests.
+   - Note: For security, the API secret may only be displayed once upon generation.
 
-Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
+> **Important**: Treat your API credentials as sensitive information. Avoid sharing them publicly or embedding them in publicly accessible code.
 
-<CardGroup>
+---
 
-<Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
-  Add flair to your docs with personalized branding.
-</Card>
+## Step 3: Generate an Access Token
 
-<Card
-  title="Add API Endpoints"
-  icon="square-code"
-  href="/api-playground/configuration"
->
-  Implement your OpenAPI spec and enable API user interaction.
-</Card>
+The Safe Locker API uses OAuth 2.0 for secure access. Use your API credentials (client ID and client secret) to obtain an access token. This token will authenticate your API requests.
 
-<Card
-  title="Integrate Analytics"
-  icon="chart-mixed"
-  href="/analytics/supported-integrations"
->
-  Draw insights from user interactions with your documentation.
-</Card>
+**Request Example:**
 
-<Card
-  title="Host on a Custom Domain"
-  icon="browser"
-  href="/settings/custom-domain/subdomain"
->
-  Keep your docs on your own website's subdomain.
-</Card>
+```bash
+curl -X POST "https://api.fezdelivery.co/oauth/token" \
+     -H "Content-Type: application/json" \
+     -d '{
+          "client_id": "your-client-id",
+          "client_secret": "your-client-secret",
+          "grant_type": "client_credentials"
+         }'
+```
 
-</CardGroup>
+**Response Example:**
+
+```json
+{
+  "access_token": "your-access-token",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+```
+
+> **Note**: This token is valid for a limited time (e.g., 1 hour). You will need to refresh the token upon expiration.
+
+---
+
+## Step 4: Make Your First API Call
+
+With your access token, you can now make your first API call! Below is an example for retrieving available lockers:
+
+**Endpoint**: `GET /lockers/available`
+
+**Request Example**:
+
+```bash
+curl -X GET "https://api.fezsafelocker.com/lockers/available" \
+     -H "Authorization: Bearer your-access-token"
+```
+
+**Response Example**:
+
+```json
+{
+  "status": "success",
+  "data": [
+    {
+      "locker_id": "12345",
+      "location": "Downtown Hub",
+      "size": "Large",
+      "status": "Available"
+    },
+    {
+      "locker_id": "67890",
+      "location": "Airport Hub",
+      "size": "Medium",
+      "status": "Available"
+    }
+  ]
+}
+```
+
+---
+
+## Next Steps
+
+You're now ready to explore the full capabilities of the Safe Locker API! Here are some recommended next steps:
+
+- **Review the [API Reference](#api-reference)**: Explore available endpoints for managing lockers, items, and accounts.
+- **Set Up Webhooks**: Enable webhooks to receive real-time notifications about locker events.
+- **Manage Access and Permissions**: Customize access permissions and role-based access control for additional security.
+
+If you encounter any issues, check the [Error Handling](#error-handling) section or contact our support team.
+
+---

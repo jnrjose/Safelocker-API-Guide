@@ -1,0 +1,113 @@
+---
+title: Authorization and Authentication
+description: Learn how to authenticate and authorize requests to the Safe Locker API, including obtaining tokens and managing API keys securely.
+---
+
+To ensure secure access to the Safe Locker API, each request requires a valid access token obtained via OAuth 2.0. This section covers the steps for authenticating your requests, managing API credentials, and understanding token expiration and refreshing.
+
+---
+
+## Overview
+
+The Safe Locker API employs **OAuth 2.0** as the authentication mechanism, providing secure access to API endpoints. Each request must include an `Authorization` header with a valid token to access resources. This setup allows you to maintain secure connections while managing your API credentials effectively.
+
+---
+
+## Step 1: Obtain API Credentials
+
+After setting up your account on the Fez SafeLocker dashboard, follow these steps to obtain your **client ID** and **client secret**:
+
+1. **Log in to the Dashboard**: Go to the Fez SafeLocker portal and log in.
+2. **Navigate to API Settings**: In the settings section, locate **API Settings** or **Developer** options.
+3. **Generate Credentials**: Click **Create API Key** to generate your client ID and secret. Copy these credentials and store them securely, as they will only be visible once.
+
+> **Note**: Treat your credentials as sensitive information. Avoid embedding them in public code repositories or sharing them openly.
+
+---
+
+## Step 2: Obtain an Access Token
+
+With your client ID and secret, request an access token. This token will authenticate all subsequent API calls.
+
+**Token Request Endpoint**: `POST /oauth/token`
+
+**Request Example**:
+
+```bash
+curl -X POST "https://api.fezsafelocker.com/oauth/token" \
+     -H "Content-Type: application/json" \
+     -d '{
+          "client_id": "your-client-id",
+          "client_secret": "your-client-secret",
+          "grant_type": "client_credentials"
+         }'
+```
+
+**Response Example**:
+
+```json
+{
+  "access_token": "your-access-token",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+```
+
+### Explanation of Response Fields
+- **access_token**: The token to be included in the `Authorization` header for subsequent requests.
+- **token_type**: The type of token issued, typically `Bearer`.
+- **expires_in**: The token's expiration time in seconds (e.g., 3600 seconds = 1 hour).
+
+> **Note**: Access tokens expire after a specified duration (typically 1 hour). Ensure you refresh your token to maintain uninterrupted access.
+
+---
+
+## Step 3: Use the Access Token in Requests
+
+After obtaining an access token, include it in the `Authorization` header for all API requests. This authenticates each call, granting access to resources within your permission scope.
+
+**Example Request with Token**:
+
+```bash
+curl -X GET "https://api.fezsafelocker.com/lockers/available" \
+     -H "Authorization: Bearer your-access-token"
+```
+
+---
+
+## Step 4: Refreshing an Expired Token
+
+Once the token expires, you’ll need to request a new one using the same client ID and secret. If using `grant_type: client_credentials`, a new token request is required as there is no refresh token mechanism for this flow.
+
+**Request Example**:
+
+Repeat the request in **Step 2** to obtain a new token.
+
+---
+
+## API Key Security Best Practices
+
+To secure your credentials, follow these best practices:
+- **Store Keys Securely**: Keep API keys in a secure location, like environment variables or secure vaults.
+- **Avoid Public Repositories**: Never expose API keys or tokens in public repositories or hardcode them in your application.
+- **Rotate Keys Regularly**: Periodically regenerate your client secret and update your application to use the new credentials.
+- **Limit Access**: Restrict API key usage to specific IP addresses or applications where feasible.
+
+---
+
+## Common Errors and Troubleshooting
+
+| Error Code | Description                               | Solution                                              |
+|------------|-------------------------------------------|-------------------------------------------------------|
+| 401        | Unauthorized – Invalid or missing token   | Ensure the `Authorization` header includes a valid token. |
+| 403        | Forbidden – Insufficient permissions      | Verify your API key permissions or contact support.   |
+| 429        | Too Many Requests – Rate limit exceeded   | Reduce request frequency or contact support for quota details. |
+
+---
+
+## Example Authentication Workflow
+
+1. **Generate Credentials**: Retrieve client ID and secret from the dashboard.
+2. **Request Access Token**: Use the credentials to get an access token.
+3. **Make API Calls**: Include the access token in the `Authorization` header of each request.
+4. **Refresh Token as Needed**: Request a new token once the current one expires.

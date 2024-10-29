@@ -35,15 +35,25 @@
     {
       "group": "Get Started",
       "pages": [
-        "introduction",
+        "intro",
         "quickstart",
-        "Environment"
+        "auth",
+        "environments",
+        "error",
+        "rate",
+        "Versioning",
+        "webhooks"
       ]
     },
     {
-      "group": "Going Live",
+      "group": "First Call",
       "pages": [
-        "essential/switching"
+        "first-call/intro",
+        "first-call/keys",
+        "first-call/quick-start",
+        "first-call/testing",
+        "first-call/environments",
+        "first-call/structure"
       ]
     },
     {
