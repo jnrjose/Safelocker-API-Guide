@@ -3,134 +3,90 @@ title: Safe Locker API Guide
 description: Documentation for the Safe Locker API by Fez SafeLocker, designed for secure storage and retrieval of items, suitable for logistics and delivery scenarios.
 ---
 
-# SafeLocker API
+Welcome to the **Safe Locker API Guide**. This API helps securely store and retrieve items, such as packages or confidential documents, typically for logistics and delivery purposes. It's designed to be simple, efficient, and secure, making it ideal for organizations that need to manage sensitive items temporarily.
 
-The Safe Locker API is a structured collection of endpoints developed to facilitate secure storage and retrieval of items, optimized for logistics and delivery use cases. Designed with security as a priority, the API supports various stages of the delivery process, including item registration, tracking, management, and secure access protocols. This API is ideal for scenarios where sensitive items need temporary, protected storage before reaching their final destination.
+---
 
 ## Overview of the Safe Locker API
 
-The Safe Locker API offers extensive functionality for registering items into lockers, accessing stored items, managing locker contents, and securely transferring or tracking ownership. This API can be integrated into larger logistics and delivery systems where reliable parcel, document, or valuable item management is essential.
+The Safe Locker API provides a range of services that allow you to:
 
-This documentation provides a detailed guide for interacting with the Safe Locker API, covering major operations from item registration to locker management and access control. Below is an overview of the primary features included:
+- **Register items** into lockers
+- **Access** and **retrieve** stored items securely
+- **Manage lockers** and their contents
+- **Transfer ownership** of items and track their progress
+
+This API is perfect for delivery companies, e-commerce platforms, and other businesses needing a reliable method to manage and protect items until they reach their final recipient.
+
+---
 
 ## Key Features
 
-### Item Registration and Storage
+### 1. Item Registration and Storage
+The Safe Locker API allows you to securely store items in lockers. Here’s how:
 
-- **Secure Item Registration**: Register items into lockers using unique identifiers, ensuring safe storage.
-- **Metadata Management**: Add metadata such as item descriptions, owner information, and access constraints upon registration, allowing precise tracking and control.
+- **Unique Identifier**: Each item gets a unique ID for tracking.
+- **Metadata**: Add item details like description, owner, and any access restrictions.
 
-### Access and Retrieval Management
+### 2. Access and Retrieval Management
+This feature enables secure access to lockers:
 
-- **Secure Access Protocols**: Access lockers through OAuth or API key authentication methods.
-- **Authorized Retrieval**: Only authorized personnel can retrieve items, ensuring items remain protected from unauthorized access.
+- **Access Control**: Only authorized users can retrieve items.
+- **Authentication**: Various verification methods ensure only the right people access the locker.
 
-### Locker and Inventory Management
+### 3. Locker and Inventory Management
+This function helps keep track of locker contents and availability:
 
-- **Locker Content Management**: Query, update, and track locker contents in real time.
-- **Locker Availability**: Dynamically check and assign available lockers based on custom criteria.
+- **Locker Status**: Check if a locker is available or occupied.
+- **Inventory**: Easily view, update, or track items within lockers.
 
-### Secure Transfer and Ownership Updates
+### 4. Secure Transfer and Ownership Updates
+Securely transfer items between users or locations, tracking ownership:
 
-- **Transfer Protocols**: Securely transfer items between users or locations.
-- **Ownership Tracking**: Track item ownership changes, supporting logistics operations with precise custody transfer records.
+- **Transfer Tracking**: Record changes in item custody.
+- **Secure Handoffs**: Suitable for logistics where secure transfers are needed.
 
-### Notifications and Alerts
+### 5. Notifications and Alerts
+Set up alerts for important locker events:
 
-- **Event Notifications**: Configure notifications for critical events like item deposit, retrieval, or unauthorized access attempts.
-- **Real-Time Alerts**: Receive real-time alerts for lockers requiring immediate attention, enhancing responsiveness.
+- **Event Alerts**: Notifications for actions like item retrieval or unauthorized access.
+- **Real-Time**: Immediate alerts for events needing quick attention.
+
+---
 
 ## Typical Use Cases
 
-The Safe Locker API is highly versatile, addressing multiple scenarios, including:
+Here’s how different industries can benefit from the Safe Locker API:
 
-- **Logistics and Delivery Services**: Securely store and deliver sensitive packages or documents to verified users only.
-- **E-Commerce**: Enable customers to pick up items from lockers using one-time passwords or secure access codes.
-- **Enterprise Security**: Manage confidential documents within secure lockers, allowing controlled access and audit trails.
-- **Courier and Parcel Services**: Centrally manage parcel storage during multi-leg delivery routes, supporting high-volume operations.
+- **Logistics and Delivery Services**: Securely store and deliver packages with restricted access.
+- **E-Commerce**: Allow customers to pick up purchases from lockers using secure codes.
+- **Enterprise Security**: Manage and control access to confidential documents.
+- **Courier Services**: Temporary storage for parcels on complex delivery routes.
+
+---
+
+## API Components
+
+The API has a few key parts to help manage lockers and items:
+
+1. **Items Endpoint** - Register new items, view details, and manage storage.
+2. **Locker Management Endpoint** - Check locker availability and assign lockers.
+3. **Access Control Endpoint** - Manage secure access and verification.
+4. **Transfer Endpoint** - Transfer items securely and track changes.
+5. **Notifications Endpoint** - Set up real-time alerts for key events.
+
+---
 
 ## Getting Started
 
-To start using the Safe Locker API, ensure you have an API key and access credentials. For authentication and environment setup details, refer to the [Authentication](#authentication) section.
+To start using the Safe Locker API, you will need:
 
----
+1. **API Key**: A unique key to access the API securely.
+2. **Authentication**: A method to verify your identity.
+3. **Basic Knowledge of Endpoints**: Familiarity with each endpoint and its function.
 
-## Authentication
+**Example Request**: Below is a simple request to check locker status.
 
-The Safe Locker API uses OAuth 2.0 for secure authentication. Each request to the API must include a valid access token. To obtain a token, make a request to the authentication endpoint as shown below:
-
-```bash
-curl -X POST "https://api.fezsafelocker.com/oauth/token" \
-     -H "Content-Type: application/json" \
-     -d '{
-          "client_id": "your-client-id",
-          "client_secret": "your-client-secret",
-          "grant_type": "client_credentials"
-         }'
-```
-
-A successful request returns a JSON response with the access token:
-
-```json
-{
-  "access_token": "your-access-token",
-  "token_type": "Bearer",
-  "expires_in": 3600
-}
-```
-
-Include the token in the `Authorization` header for subsequent API requests:
-
-```bash
-curl -X GET "https://api.fezsafelocker.com/items" \
-     -H "Authorization: Bearer your-access-token"
-```
-
----
-
-## API Endpoints Overview
-
-Below is a summary of key endpoints in the Safe Locker API:
-
-- `POST /lockers/register`: Register a new item into a specific locker.
-- `GET /lockers/{lockerId}/items`: Retrieve the list of items in a particular locker.
-- `PUT /lockers/{lockerId}/items/{itemId}`: Update item metadata or status within a locker.
-- `DELETE /lockers/{lockerId}/items/{itemId}`: Remove an item from a locker.
-- `POST /lockers/transfer`: Transfer ownership or responsibility of an item between users.
-
-For detailed endpoint descriptions, including parameters, request body formats, and example responses, see the [Endpoints](#endpoints) section.
-
----
-
-## Endpoints
-
-### `POST /lockers/register`
-
-Registers a new item into a specified locker. This endpoint requires item metadata, owner details, and locker information.
-
-**Request Example:**
-
-```json
-{
-  "locker_id": "12345",
-  "item_description": "Confidential Document",
-  "owner_id": "user-67890",
-  "access_code": "secure-access-code"
-}
-```
-
-**Response Example:**
-
-```json
-{
-  "status": "success",
-  "message": "Item registered successfully",
-  "item_id": "item-54321"
-}
-```
-
-**Notes:**
-- Ensure `locker_id` is valid and available.
-- `access_code` must meet security requirements to ensure item protection.
-
----
+```http
+GET /api/locker/status
+Authorization: Bearer YOUR_API_KEY

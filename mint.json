@@ -28,7 +28,9 @@
   "tabs": [
     {
       "name": "API Reference",
-      "url": "reference"
+      "openapi": "sandbox/SafeLocker.json",
+      "url": "sandbox",
+      "icon": "square-terminal"
     }
   ],
   "navigation": [
@@ -59,15 +61,15 @@
     {
       "group": "API Documentation",
       "pages": [
-        "reference/introduction"
+        "sandbox/introduction"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Sandbox",
       "pages": [
-        "reference/endpoint/get",
-        "reference/endpoint/create",
-        "reference/endpoint/delete"
+        "sandbox/get",
+        "sandbox/create",
+        "sandbox/delete"
       ]
     }
   ],
