@@ -28,7 +28,7 @@
   "tabs": [
     {
       "name": "API Reference",
-      "openapi": "sandbox/SafeLocker.json",
+      "openAPI":"openapi.json"
       "url": "sandbox",
       "icon": "square-terminal"
     }

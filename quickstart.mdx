@@ -1,117 +1,126 @@
----
-title: Quick Start Guide
-description: Get started with the Safe Locker API by Fez SafeLocker, including sign-up, obtaining API credentials, and making your first API call.
----
+# Getting Started with Safe Locker API
 
-Welcome to the **Safe Locker API**! This guide will help you get up and running with the Safe Locker API, covering account creation, obtaining API credentials, and making your first authenticated API request. Follow these steps to start integrating secure locker management into your application.
+This guide walks you through creating an account, verifying it, setting up a password, and generating your first API key on the Safe Locker platform.
 
 ---
 
-## Step 1: Sign Up for a Safe Locker Account
+## Step 1: Create an Account
 
-1. **Navigate to the Sign-Up Page**: Go to the Fez SafeLocker portal at [https://portal.fezdelivery.co/signup](https://portal.fezdelivery.co/signup).
-2. **Fill in the Registration Form**: Provide the necessary information:
-   - **Name**: Full name of the representative.
-   - **Email**: Business email address for account communication.
-   - **Organization Details**: Business name, registration number, and contact information.
+<Callout title="Step 1: Create Your Account" type="info">
+Navigate to the Safe Locker registration page to begin the signup process.
+</Callout>
 
-3. **Complete Registration**: Submit the form to create your account.
-4. **Verify Your Email**: After signing up, check your email for a verification link. Click the link to verify your account 
-5. **Create Password**: A secure password for accessing the account and activate API access.
+**1. Fill in Your Details**:
+- **First Name** and **Last Name**
+- **Email Address** (required for verification)
+- **Business Name**
 
----
+**2. Accept Terms and Conditions**:
+Check the box to accept the platform's terms and conditions.
 
-## Step 2: Obtain Your API Credentials
+**3. Create Account**:
+Click the green **Create Account** button.
 
-Once your account is activated, follow these steps to obtain the API credentials required for making requests:
+![Image of the registration form showing input fields for account creation](attachment:/mnt/data/Screenshot 2024-11-08 at 3.40.29 PM.png)
 
-1. **Log in to Your Dashboard**: Head to the Fez SafeLocker dashboard at [https://portal.fezdelivery.co/login](https://portal.fezdelivery.co/login) and enter your registered email and password.
-2. **Navigate to API Settings**:
-   - In your dashboard, locate the **API Settings** or **Developer** section.
-   - Click **Create API Key** to generate a new API key for your application.
-3. **Save Your API Key and Secret**:
-   - Once generated, the API key and secret will be displayed. Copy and store them in a secure location, as they will be used for authenticating requests.
-   - Note: For security, the API secret may only be displayed once upon generation.
-
-> **Important**: Treat your API credentials as sensitive information. Avoid sharing them publicly or embedding them in publicly accessible code.
+> **Tip:** Ensure your email address is correct, as you’ll need it for account verification.
 
 ---
 
-## Step 3: Generate an Access Token
+## Step 2: Verify Your Email
 
-The Safe Locker API uses OAuth 2.0 for secure access. Use your API credentials (client ID and client secret) to obtain an access token. This token will authenticate your API requests.
+<Callout title="Email Verification" type="warning">
+A verification email will be sent to your provided email address.
+</Callout>
 
-**Request Example:**
+**1. Check Your Inbox**:
+Look for an email from Safe Locker with a verification link.
 
-```bash
-curl -X POST "https://api.fezdelivery.co/oauth/token" \
-     -H "Content-Type: application/json" \
-     -d '{
-          "client_id": "your-client-id",
-          "client_secret": "your-client-secret",
-          "grant_type": "client_credentials"
-         }'
-```
+**2. Click the Verification Link**:
+Clicking this link will activate your account.
 
-**Response Example:**
+**3. Resend Option**:
+If you don’t receive the email, click **Resend** on the confirmation page.
 
-```json
-{
-  "access_token": "your-access-token",
-  "token_type": "Bearer",
-  "expires_in": 3600
-}
-```
+![Image showing a confirmation screen with a resend option for verification email](attachment:/mnt/data/Screenshot 2024-11-08 at 3.42.59 PM.png)
 
-> **Note**: This token is valid for a limited time (e.g., 1 hour). You will need to refresh the token upon expiration.
+> **Note:** Sometimes the email may land in your Spam or Junk folder. If you don’t see it, check there.
 
 ---
 
-## Step 4: Make Your First API Call
+## Step 3: Set Up a Password
 
-With your access token, you can now make your first API call! Below is an example for retrieving available lockers:
+<Callout title="Password Setup" type="tip">
+After email verification, you’ll need to create a secure password.
+</Callout>
 
-**Endpoint**: `GET /lockers/available`
+**Password Requirements**:
+- Minimum 8 characters
+- At least one uppercase letter
+- At least one lowercase letter
+- At least one number
+- At least one special character (e.g., `!@#$%^&*`)
 
-**Request Example**:
+1. **Enter a Password** that meets these criteria.
+2. **Confirm Your Password** by re-entering it.
+3. **Save and Sign In** to log into your account.
 
-```bash
-curl -X GET "https://api.fezsafelocker.com/lockers/available" \
-     -H "Authorization: Bearer your-access-token"
-```
+![Image showing the password setup screen with password criteria](attachment:/mnt/data/Screenshot 2024-11-08 at 3.47.09 PM.png)
 
-**Response Example**:
-
-```json
-{
-  "status": "success",
-  "data": [
-    {
-      "locker_id": "12345",
-      "location": "Downtown Hub",
-      "size": "Large",
-      "status": "Available"
-    },
-    {
-      "locker_id": "67890",
-      "location": "Airport Hub",
-      "size": "Medium",
-      "status": "Available"
-    }
-  ]
-}
-```
+> **Common Pitfall**: Ensure your password meets all listed requirements. The platform will highlight which criteria are missing if it doesn’t meet them.
 
 ---
 
-## Next Steps
+## Step 4: Navigate the Dashboard
 
-You're now ready to explore the full capabilities of the Safe Locker API! Here are some recommended next steps:
+<Callout title="Dashboard Overview" type="info">
+The Safe Locker Dashboard is your main interface for managing lockers, accessing reports, and generating API keys.
+</Callout>
 
-- **Review the [API Reference](#api-reference)**: Explore available endpoints for managing lockers, items, and accounts.
-- **Set Up Webhooks**: Enable webhooks to receive real-time notifications about locker events.
-- **Manage Access and Permissions**: Customize access permissions and role-based access control for additional security.
+After logging in, you’ll see your **Dashboard** with options for **Locker Management**, **Reports**, **Tickets**, and more.
 
-If you encounter any issues, check the [Error Handling](#error-handling) section or contact our support team.
+![Image of the main dashboard showing locker availability and usage metrics](attachment:/mnt/data/Screenshot 2024-11-08 at 3.56.56 PM.png)
+
+> **Tip:** Familiarize yourself with the left-side menu to explore sections like **API Keys**, **Tickets**, **Reports**, and **Settings**.
 
 ---
+
+## Step 5: Generate Your First API Key
+
+<Callout title="Generate API Key" type="success">
+You’ll need an API key to integrate with the Safe Locker API.
+</Callout>
+
+**Steps**:
+1. Go to the **API Keys** section in the left menu.
+2. Click on **Generate API Key**.
+3. **Fill in API Key Details**:
+   - **API Name**: A descriptive name for your API key (e.g., "Order Management Key").
+   - **API Description**: A brief description of the API key’s purpose.
+   - **Expiration Date**: Set an expiration date if needed.
+4. Click **Generate** to create the API key.
+
+![Image showing the API key generation form with fields for API name, description, and expiration](attachment:/mnt/data/Screenshot 2024-11-08 at 3.55.45 PM.png)
+
+> **Security Notice**: Store your API key securely. It will only be displayed once. If compromised, you can regenerate a new one.
+
+![Image showing the security notice with the generated API key](attachment:/mnt/data/Screenshot 2024-11-08 at 3.55.55 PM.png)
+
+---
+
+## Troubleshooting Common Issues
+
+<Details summary="Click to Expand Troubleshooting Tips">
+1. **Email Verification Not Received**:
+   - Check your Spam folder and use the **Resend** option if needed.
+2. **Password Requirements Not Met**:
+   - Ensure your password matches all listed requirements.
+3. **API Key Expiration**:
+   - Be mindful of the expiration date set during API key creation. Generate a new key if it expires.
+</Details>
+
+---
+
+<Callout title="You're Ready to Integrate!" type="success">
+Congratulations! You’re all set up and ready to integrate with the Safe Locker API.
+</Callout>
