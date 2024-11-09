@@ -28,7 +28,6 @@
   "tabs": [
     {
       "name": "API Reference",
-      "openAPI":"openapi.json"
       "url": "sandbox",
       "icon": "square-terminal"
     }
@@ -77,5 +76,6 @@
     "x": "https://x.com/fezdelivery",
     "instagram": "https://instagram.com",
     "linkedin": "https://linkedin.com/company/fezdelivery"
-  }
+  },
+  "versions": ["Beta 1"]
 }
