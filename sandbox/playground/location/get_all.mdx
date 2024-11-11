@@ -1,0 +1,69 @@
+---
+title: "Get All Locations"
+api: "GET /locations"
+---
+
+<ResponseExample>
+
+```json
+{
+	"status": true,
+	"message": "Request successful",
+	"data": {
+		"locations": {
+			"current_page": 1,
+			"data": [
+				{
+					"id": 1,
+					"name": "Alpha",
+					"address": "Alpha",
+					"latitude": "3.0002000",
+					"longitude": "0.78290000",
+					"state_id": 1,
+					"created_at": "2024-09-23T11:30:52.000000Z",
+					"updated_at": "2024-09-23T11:30:52.000000Z"
+				},
+				{
+					"id": 2,
+					"name": "Beta",
+					"address": "Beta",
+					"latitude": "3.0002000",
+					"longitude": "0.78290000",
+					"state_id": 1,
+					"created_at": "2024-09-23T11:49:13.000000Z",
+					"updated_at": "2024-09-23T11:49:13.000000Z"
+				}
+			],
+			"first_page_url": "http://127.0.0.1:8000/api/v1/locations?page=1",
+			"from": 1,
+			"last_page": 1,
+			"last_page_url": "http://127.0.0.1:8000/api/v1/locations?page=1",
+			"links": [
+				{
+					"url": null,
+					"label": "&laquo; Previous",
+					"active": false
+				},
+				{
+					"url": "http://127.0.0.1:8000/api/v1/locations?page=1",
+					"label": "1",
+					"active": true
+				},
+				{
+					"url": null,
+					"label": "Next &raquo;",
+					"active": false
+				}
+			],
+			"next_page_url": null,
+			"path": "http://127.0.0.1:8000/api/v1/locations",
+			"per_page": 20,
+			"prev_page_url": null,
+			"to": 2,
+			"total": 2
+		}
+	}
+}
+```
+
+</ResponseExample>

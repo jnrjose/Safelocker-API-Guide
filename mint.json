@@ -1,83 +1,160 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
-  "logo": {
-    "dark": "/logo/Fezlogo_white.png",
-    "light": "/logo/fez-logo.png"
-  },
-  "favicon": "/logo/fezicon.png",
-  "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
-  },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:support@fezdelivery.co"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Get Started",
-    "url": "https://dashboard.fezdelivery.co"
-  },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "sandbox",
-      "icon": "square-terminal"
-    }
-  ],
-  "navigation": [
-    {
-      "group": "Get Started",
-      "pages": [
-        "intro",
-        "quickstart",
-        "auth",
-        "environments",
-        "error",
-        "rate",
-        "Versioning",
-        "webhooks"
-      ]
-    },
-    {
-      "group": "First Call",
-      "pages": [
-        "first-call/intro",
-        "first-call/keys",
-        "first-call/quick-start",
-        "first-call/testing",
-        "first-call/environments",
-        "first-call/structure"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "sandbox/introduction"
-      ]
-    },
-    {
-      "group": "Sandbox",
-      "pages": [
-        "sandbox/get",
-        "sandbox/login",
-        "sandbox/delete"
-      ]
-    }
-  ],
-  "footerSocials": {
-    "x": "https://x.com/fezdelivery",
-    "instagram": "https://instagram.com",
-    "linkedin": "https://linkedin.com/company/fezdelivery"
-  },
-  "api": {
+	"$schema": "https://mintlify.com/schema.json",
+	"name": "Starter Kit",
+	"logo": {
+		"dark": "/logo/Fezlogo_white.png",
+		"light": "/logo/fez-logo.png"
+	},
+	"favicon": "/logo/fezicon.png",
+	"colors": {
+		"primary": "#0D9373",
+		"light": "#07C983",
+		"dark": "#0D9373",
+		"anchors": {
+			"from": "#0D9373",
+			"to": "#07C983"
+		}
+	},
+	"topbarLinks": [
+		{
+			"name": "Support",
+			"url": "mailto:support@fezdelivery.co"
+		}
+	],
+	"topbarCtaButton": {
+		"name": "Get Started",
+		"url": "https://dashboard.fezdelivery.co"
+	},
+	"tabs": [
+		{
+			"name": "API Reference",
+			"url": "sandbox",
+			"icon": "square-terminal"
+		}
+	],
+	"navigation": [
+		{
+			"group": "Get Started",
+			"pages": [
+				"intro",
+				"quickstart",
+				"auth",
+				"environments",
+				"error",
+				"rate",
+				"Versioning",
+				"webhooks"
+			]
+		},
+		{
+			"group": "First Call",
+			"pages": [
+				"first-call/intro",
+				"first-call/keys",
+				"first-call/quick-start",
+				"first-call/testing",
+				"first-call/environments",
+				"first-call/structure"
+			]
+		},
+		{
+			"group": "API Documentation",
+			"pages": ["sandbox/introduction"]
+		},
+		{
+			"group": "Sandbox",
+			"pages": ["sandbox/get", "sandbox/login", "sandbox/delete"]
+		}
+	],
+	"footerSocials": {
+		"x": "https://x.com/fezdelivery",
+		"instagram": "https://instagram.com",
+		"linkedin": "https://linkedin.com/company/fezdelivery"
+	},
+	"$schema": "https://mintlify.com/schema.json",
+	"name": "Starter Kit",
+	"logo": {
+		"dark": "/logo/Fezlogo_white.png",
+		"light": "/logo/fez-logo.png"
+	},
+	"favicon": "/logo/fezicon.png",
+	"colors": {
+		"primary": "#0D9373",
+		"light": "#07C983",
+		"dark": "#0D9373",
+		"anchors": {
+			"from": "#0D9373",
+			"to": "#07C983"
+		}
+	},
+	"topbarLinks": [
+		{
+			"name": "Support",
+			"url": "mailto:support@fezdelivery.co"
+		}
+	],
+	"topbarCtaButton": {
+		"name": "Get Started",
+		"url": "https://dashboard.fezdelivery.co"
+	},
+	"tabs": [
+		{
+			"name": "API Reference",
+			"url": "sandbox",
+			"icon": "square-terminal"
+		}
+	],
+	"navigation": [
+		{
+			"group": "Get Started",
+			"pages": [
+				"intro",
+				"quickstart",
+				"auth",
+				"environments",
+				"error",
+				"rate",
+				"Versioning",
+				"webhooks"
+			]
+		},
+		{
+			"group": "First Call",
+			"pages": [
+				"first-call/intro",
+				"first-call/keys",
+				"first-call/quick-start",
+				"first-call/testing",
+				"first-call/environments",
+				"first-call/structure"
+			]
+		},
+		{
+			"group": "API Documentation",
+			"pages": [
+				{
+					"group": "Getting Started",
+					"pages": ["sandbox/introduction", "sandbox/playground/auth/get_token"]
+				},
+				{
+					"group": "Location",
+					"pages": [
+						"sandbox/playground/location/create",
+						"sandbox/playground/location/update",
+						"sandbox/playground/location/get_all",
+						"sandbox/playground/location/getBy_id",
+						"sandbox/playground/location/delete"
+					]
+				}
+			]
+		}
+	],
+	"footerSocials": {
+		"x": "https://x.com/fezdelivery",
+		"instagram": "https://instagram.com",
+		"linkedin": "https://linkedin.com/company/fezdelivery"
+	},
+	"api": {
 		"baseUrl": "https://safe-api-staging.fezdelivery.co/api/v1",
 		"auth": {
 			"method": "bearer"
@@ -91,5 +168,5 @@
 		"raiseIssue": true,
 		"thumbsRating": true
 	},
-  "versions": ["Beta 1"]
+	"versions": ["Beta 1"]
 }
