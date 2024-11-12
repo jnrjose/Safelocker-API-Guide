@@ -1,0 +1,24 @@
+---
+title: Get Access Token
+api: POST /login
+authMethod: basic
+---
+
+<ParamField body="email" type="string" required />
+<ParamField body="password" type="string" required />
+
+<ResponseExample>
+
+```json
+{
+	"status": true,
+	"message": "Completed Successfully",
+	"data": {
+		"access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NhZmUtbG9ja2VyLWFwaS50ZXN0L2FwaS92MS9sb2dpbiIsImlhdCI6MTczMDM4MzU0NSwiZXhwIjoxNzMwMzg3MTQ1LCJuYmYiOjE3MzAzODM1NDUsImp0aSI6Inc4d0NUUnA4T1JXYTN6Q2ciLCJzdWIiOiIxNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.npF8PJlkal1V_NUidqpMI0YN3omslpLRsOHFbARt5Sg",
+		"tokenType": "Bearer",
+		"expiresAt": "3600"
+	}
+}
+```
+
+</ResponseExample>

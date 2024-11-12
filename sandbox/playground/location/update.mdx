@@ -1,0 +1,20 @@
+---
+title: "Update Location"
+api: "PUT /locations/{id}"
+---
+
+<ParamField body="name" type="string" required />
+<ParamField body="address" type="string" required />
+<ParamField body="latitude" type="string" required />
+<ParamField body="longitude" type="string" required />
+<ParamField body="stateId" type="string" required />
+
+<ResponseExample>
+
+```json
+{
+    "status": true,
+    "message": "Update Successful"
+}
+```
+</ResponseExample>
