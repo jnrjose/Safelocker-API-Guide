@@ -1,0 +1,173 @@
+---
+title: "Environments: Test and Live"
+description: "Understand the differences between the Test and Live environments, how to switch environments, and best practices for managing API keys securely."
+mode: "wide"
+---
+
+The Safe Locker API provides two environments: **Test** and **Live**. These environments allow you to safely develop and test your integration before deploying to production.
+
+---
+
+## Overview of Environments
+
+- **Test Environment**: Used for simulating API interactions without affecting real data. Ideal for development, debugging, and testing.
+  
+- **Live Environment**: For production use. All actions in this environment affect real data, so only authorized production API keys should be used here.
+
+<Callout title="Important" type="warning">
+Ensure you are using the correct environment before making requests, as actions in the Live environment are irreversible.
+</Callout>
+
+---
+
+## How to Switch Environments
+
+### 1. Base URLs for Environments
+
+To switch between environments, update the **base URL** in your API requests.
+
+<Tabs>
+<Tab title="Test Environment">
+**Base URL**: `https://api.test.fezdelivery.co`
+</Tab>
+
+<Tab title="Live Environment">
+**Base URL**: `https://api.fezdelivery.co`
+</Tab>
+</Tabs>
+
+**Example**:
+
+<CodeBlock title="API Request Example" language="http">
+```http
+# Test Environment
+GET https://api.test.fezdelivery.co/lockers/status
+Authorization: Bearer your-test-access-token
+
+# Live Environment
+GET https://api.fezdelivery.co/lockers/status
+Authorization: Bearer your-live-access-token
+```
+</CodeBlock>
+
+### 2. Using Environment-Specific API Keys
+
+Each environment requires its own API key.
+
+- **Test API Key**: Use only in the Test environment (`https://api.test.fezdelivery.co`).
+- **Live API Key**: Use only in the Live environment (`https://api.fezdelivery.co`).
+
+> **Tip**: Label your API keys in the dashboard to avoid confusion between test and live keys.
+
+### 3. Switching Environments in Code
+
+Use environment variables to manage your base URL and API keys dynamically.
+
+<CodeBlock title="Example Environment Variables in JavaScript (Node.js)" language="javascript">
+```javascript
+const BASE_URL = process.env.API_BASE_URL;
+const API_KEY = process.env.API_KEY;
+
+async function getLockerStatus() {
+  const response = await fetch(`${BASE_URL}/lockers/status`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${API_KEY}`
+    }
+  });
+  const data = await response.json();
+  console.log(data);
+}
+```
+</CodeBlock>
+
+---
+
+## Differences Between Test and Live Environments
+
+<AccordionGroup>
+
+<Accordion title="1. Data Persistence">
+- **Test Environment**: Data created here is temporary and may be reset periodically.
+- **Live Environment**: Data is permanent and affects real records. Only use this environment for production data.
+</Accordion>
+
+<Accordion title="2. Notifications and Alerts">
+- **Test Environment**: Notifications are simulated and may not reach real recipients.
+- **Live Environment**: All notifications are fully functional. Verify settings to avoid unintended alerts.
+</Accordion>
+
+<Accordion title="3. Rate Limits and Quotas">
+- **Test Environment**: Rate limits are typically more lenient, but excessive calls may still be limited.
+- **Live Environment**: Production-level rate limits apply, and exceeding limits may result in restrictions.
+</Accordion>
+
+<Accordion title="4. Security and Access Control">
+- **Test Environment**: Security measures may be relaxed for testing, but follow best practices for data security.
+- **Live Environment**: Full security measures apply, including IP whitelisting and restricted permissions.
+</Accordion>
+
+<Accordion title="5. Billing and Usage Tracking">
+- **Test Environment**: No charges are incurred for requests in the Test environment.
+- **Live Environment**: API calls are billed according to your usage plan. Monitor costs, especially for high-frequency requests.
+</Accordion>
+
+</AccordionGroup>
+
+---
+
+## Best Practices for Managing Environments
+
+<Callout title="Best Practices" type="tip">
+1. **Use Separate API Keys**: Always use separate keys for test and live environments.
+2. **Set Up Environment Variables**: Use environment variables for base URLs and API keys for easy switching.
+3. **Restrict Live Access**: Limit access to the Live environment to authorized personnel only.
+4. **Test Thoroughly**: Use the Test environment to validate all functionality before deploying to production.
+5. **Monitor Usage**: Keep an eye on rate limits and billing in the Live environment.
+</Callout>
+
+---
+
+## Example Environment Setup in `.env` Files
+
+Set up `.env` files for each environment to store API keys and base URLs securely.
+
+<CodeGroup>
+<CodeBlock title=".env.test">
+```plaintext
+API_BASE_URL=https://api.test.fezdelivery.co
+API_KEY=your-test-api-key
+```
+</CodeBlock>
+
+<CodeBlock title=".env.live">
+```plaintext
+API_BASE_URL=https://api.fezdelivery.co
+API_KEY=your-live-api-key
+```
+</CodeBlock>
+</CodeGroup>
+
+> **Pro Tip**: Use libraries like `dotenv` in Node.js to load these environment variables based on the environment.
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+<AccordionGroup>
+
+<Accordion title="How do I know which environment I'm using?">
+Check the base URL in your API requests. `https://api.test.fezdelivery.co` indicates the Test environment, while `https://api.fezdelivery.co` indicates the Live environment.
+</Accordion>
+
+<Accordion title="Can I test all features in the Test environment?">
+Yes, the Test environment supports all API functionalities, allowing you to simulate requests and verify responses. However, notifications and alerts may be simulated and not reach real recipients.
+</Accordion>
+
+<Accordion title="What happens to data in the Test environment?">
+Data in the Test environment is temporary and may be reset periodically. Use this environment for testing only, as data will not be retained long-term.
+</Accordion>
+
+</AccordionGroup>
+
+---

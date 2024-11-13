@@ -1,0 +1,133 @@
+---
+title: "Rate Limiting"
+description: The Safe Locker API enforces rate limits to ensure fair usage and maintain performance. Exceeding these limits will result in a `429 Too Many Requests` error, indicating that your application has reached the maximum allowed requests within a specific time period.
+---
+
+## What is Rate Limiting?
+
+Rate limiting restricts the number of API requests that a client can make within a given time frame. This prevents overuse of resources and helps maintain server stability for all users.
+
+- **Rate Limit**: The maximum number of requests allowed within a specific time period (e.g., 100 requests per minute).
+- **Reset Time**: The time at which the rate limit resets, allowing additional requests to be made.
+
+---
+
+## Safe Locker API Rate Limit Details
+
+<Tabs>
+<Tab title="Request Limit">
+Safe Locker API requests are limited to:
+- **100 requests per minute** (subject to change based on your usage plan).
+</Tab>
+
+<Tab title="Burst Limit">
+Burst limits allow a short burst of requests exceeding the normal rate, but sustained high usage will still be rate-limited.
+</Tab>
+</Tabs>
+
+---
+
+## Identifying Rate Limit Status
+
+Each API response includes rate limit headers to help you track and manage your request usage. These headers provide information on your remaining requests and the reset time.
+
+### Rate Limit Headers
+
+| Header               | Description                                               |
+|----------------------|-----------------------------------------------------------|
+| `X-RateLimit-Limit`  | The total number of requests allowed in the current period. |
+| `X-RateLimit-Remaining` | The number of requests remaining in the current period.  |
+| `X-RateLimit-Reset`  | The time (in Unix timestamp) when the rate limit will reset. |
+
+**Example Response Headers**:
+
+<CodeBlock title="Rate Limit Headers Example" language="http">
+```http
+HTTP/1.1 200 OK
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 5
+X-RateLimit-Reset: 1640995200
+```
+</CodeBlock>
+
+> **Tip**: Use `X-RateLimit-Remaining` to monitor available requests and avoid reaching the limit.
+
+---
+
+## Handling Rate-Limited Requests
+
+If you exceed the rate limit, you will receive a `429 Too Many Requests` error. Here’s how to handle it effectively:
+
+### 429 Too Many Requests Error
+
+**Error Message**:
+<CodeBlock title="429 Error Response Example" language="json">
+```json
+{
+  "error": "Too Many Requests",
+  "message": "You have exceeded the rate limit. Please wait before retrying."
+}
+```
+</CodeBlock>
+
+### Retry Strategy
+
+When you receive a `429` error, wait until the rate limit resets before retrying. Use the `X-RateLimit-Reset` header to determine when it’s safe to retry.
+
+<Callout title="Implement Retry Logic" type="tip">
+Implement a retry mechanism with exponential backoff to handle `429` errors gracefully. Exponential backoff delays each retry attempt, reducing server load and increasing the chances of a successful request on the next attempt.
+</Callout>
+
+### Example Retry Logic in JavaScript
+
+<CodeBlock title="Retry Logic Example" language="javascript">
+```javascript
+async function makeApiRequest(url, options, retries = 3) {
+  try {
+    const response = await fetch(url, options);
+    if (response.status === 429) {
+      const resetTime = response.headers.get("X-RateLimit-Reset");
+      const waitTime = resetTime ? (resetTime - Date.now() / 1000) : 60;
+      console.warn(`Rate limit exceeded. Retrying in ${waitTime} seconds.`);
+      await new Promise(resolve => setTimeout(resolve, waitTime * 1000));
+      return makeApiRequest(url, options, retries - 1);
+    }
+    return await response.json();
+  } catch (error) {
+    if (retries > 0) {
+      console.log("Retrying request...");
+      return makeApiRequest(url, options, retries - 1);
+    }
+    throw error;
+  }
+}
+```
+</CodeBlock>
+
+---
+
+## Best Practices for Rate Limit Management
+
+<Callout title="Best Practices" type="tip">
+Follow these practices to optimize your API usage and avoid rate limits:
+</Callout>
+
+1. **Monitor Rate Limit Headers**: Track `X-RateLimit-Remaining` to avoid hitting the limit.
+2. **Optimize API Requests**: Minimize redundant requests by caching data where possible and only fetching updates as needed.
+3. **Use Exponential Backoff**: When retrying failed requests, use exponential backoff to manage retries efficiently.
+4. **Batch Requests**: Group multiple operations into a single request, if supported, to reduce the total number of API calls.
+5. **Implement Client-Side Throttling**: Regulate the rate of API requests in your application to avoid exceeding limits.
+
+---
+
+## Example Scenario: Rate Limiting in Action
+
+Let’s say your application makes frequent requests to retrieve locker status information. To avoid exceeding the limit:
+
+1. **Check `X-RateLimit-Remaining`**: Before each request, check how many requests you have left in the current period.
+2. **Implement Retry Logic**: If a `429` error occurs, wait until the rate limit resets, as indicated by `X-RateLimit-Reset`.
+3. **Batch Status Checks**: Consider batching locker status checks into a single API call to reduce request volume.
+
+> **Pro Tip**: Set up automated alerts to notify you when approaching rate limits, allowing you to adjust request patterns proactively.
+
+---

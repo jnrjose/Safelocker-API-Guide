@@ -1,0 +1,136 @@
+The Safe Locker API is versioned to ensure stability and backward compatibility as new features and improvements are added. Understanding how versioning works will help you manage updates smoothly and avoid breaking changes in your integration.
+
+---
+
+## Why Versioning Matters
+
+API versioning allows developers to:
+- **Maintain Stability**: Use a stable version of the API even when new versions are released.
+- **Access New Features**: Upgrade to newer versions when ready to take advantage of new functionality.
+- **Avoid Breaking Changes**: Control when to update to newer versions, minimizing disruptions to existing applications.
+
+---
+
+## Versioning Format
+
+The Safe Locker API follows a **URI-based versioning** strategy, where each version of the API is represented by a version identifier in the URL path. This format is structured as follows:
+
+**Format**: `/v{version_number}/`
+
+- **Current Version**: The latest version of the API is `/v1/`.
+- **Example Endpoint**: `https://api.fezdelivery.co/v1/lockers/status`
+
+> **Note**: The Safe Locker API’s major version (e.g., `v1`) will only change when there are significant updates or breaking changes.
+
+---
+
+## Specifying API Versions in Requests
+
+To specify an API version, include the version identifier in the URL path for each request.
+
+<Tabs>
+<Tab title="Example with v1 (Current Version)">
+```http
+GET https://api.fezdelivery.co/v1/lockers/status
+Authorization: Bearer your-access-token
+```
+</Tab>
+
+<Tab title="Example with a Future Version (v2)">
+If a future version, `v2`, is released, use:
+```http
+GET https://api.fezdelivery.co/v2/lockers/status
+Authorization: Bearer your-access-token
+```
+</Tab>
+</Tabs>
+
+> **Tip**: Always review the Safe Locker API documentation for updates when a new version is available.
+
+---
+
+## Changes Between Versions
+
+### Version Release Types
+
+The Safe Locker API may release three types of version updates, following **semantic versioning principles**:
+- **Major**: Introduces breaking changes (e.g., v1 to v2). Requires careful migration.
+- **Minor**: Adds new features or improvements in a backward-compatible manner (e.g., v1.1).
+- **Patch**: Provides bug fixes or minor enhancements that do not affect existing functionality (e.g., v1.0.1).
+
+<AccordionGroup>
+
+<Accordion title="Major Version Update">
+A major version update (e.g., `v1` to `v2`) introduces changes that may not be compatible with previous versions. This type of update may include:
+- Altered or removed endpoints.
+- New authentication requirements.
+- Changes to request/response formats.
+
+> **Note**: You will need to modify your code to migrate to a new major version.
+</Accordion>
+
+<Accordion title="Minor Version Update">
+A minor version update (e.g., `v1.0` to `v1.1`) introduces new, backward-compatible features and improvements. Existing functionality remains unaffected, so upgrades can be made without breaking changes.
+</Accordion>
+
+<Accordion title="Patch Update">
+A patch update (e.g., `v1.0.1`) is a small, backward-compatible update to fix bugs or enhance performance. It doesn’t affect your existing integration and is applied automatically to the current major and minor version.
+</Accordion>
+
+</AccordionGroup>
+
+---
+
+## How to Handle Version Updates
+
+1. **Monitor for Updates**: Subscribe to Safe Locker’s changelog or release notes for version announcements.
+2. **Test in Staging**: Before migrating to a new major or minor version, test your integration in a staging environment to ensure compatibility.
+3. **Use Version-Specific URLs**: Always specify the API version in your requests to avoid unintended updates.
+4. **Review Documentation**: Check the latest API documentation to understand any changes and update your integration as needed.
+5. **Plan for Major Updates**: For major version updates, allocate time to review changes and test your integration thoroughly.
+
+---
+
+## Best Practices for Managing API Versioning
+
+<Callout title="Best Practices" type="tip">
+Follow these guidelines to manage API versions effectively and minimize disruptions:
+</Callout>
+
+- **Specify Versions Explicitly**: Always include the version number in your API requests to ensure consistent behavior.
+- **Avoid Hardcoding URLs**: Use environment variables to manage API base URLs, making it easier to switch versions.
+- **Plan for Deprecation**: Older versions may be deprecated. Review Safe Locker’s deprecation policy to plan timely migrations.
+- **Leverage Semantic Versioning**: Use versioning to determine the impact of updates. Minor and patch updates are safe to implement, while major updates require careful planning.
+
+---
+
+## Example of Handling a Major Update
+
+Let’s assume the Safe Locker API releases a new major version, `v2`, with changes to the authentication flow and response format. Here’s how you would approach the migration:
+
+1. **Review the Release Notes**: Understand the changes introduced in `v2` and how they affect your current integration.
+2. **Update Staging Environment**: Set up a staging environment with the `v2` API endpoints and test your requests to check for compatibility.
+3. **Modify Your Code**: Adjust any changes required by the new version, such as updating request parameters or headers.
+4. **Validate and Deploy**: Once testing is complete, deploy the updated integration to production.
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+<AccordionGroup>
+
+<Accordion title="What happens if I don’t specify a version?">
+If you don’t specify a version in the URL, the API may default to the latest stable version. However, this is not guaranteed. It is best practice to always include a version number to ensure consistent behavior.
+</Accordion>
+
+<Accordion title="How will I know when a new version is released?">
+Subscribe to the Safe Locker API’s changelog or release notes for version announcements and migration guidelines.
+</Accordion>
+
+<Accordion title="How long are old versions supported?">
+Safe Locker provides a deprecation policy, giving you time to migrate before older versions are retired. Specific timelines for support will be announced with each version release.
+</Accordion>
+
+</AccordionGroup>
+
+---

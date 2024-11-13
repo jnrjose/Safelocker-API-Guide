@@ -1,0 +1,226 @@
+---
+title: "Error Handling"
+description: "The Safe Locker API uses standard HTTP status codes to indicate the success or failure of API requests. Understanding these codes will help you interpret responses, troubleshoot issues, and improve the user experience in your application."
+---
+
+## Overview of HTTP Status Codes
+
+HTTP status codes are categorized as follows:
+- **2xx Success**: The request was successful.
+- **4xx Client Errors**: The request was invalid or cannot be completed due to client error (e.g., incorrect input).
+- **5xx Server Errors**: The server encountered an error and could not fulfill the request.
+
+---
+
+## Common HTTP Status Codes in the Safe Locker API
+
+<Tabs>
+
+<Tab title="2xx Success Codes">
+
+- **200 OK**: The request was successful. The response will contain the requested data.
+- **201 Created**: The resource was successfully created (e.g., creating a new locker or user).
+- **204 No Content**: The request was successful, but there is no content to return (e.g., a DELETE request).
+
+</Tab>
+
+<Tab title="4xx Client Error Codes">
+
+### Client Errors
+
+<AccordionGroup>
+
+<Accordion title="400 Bad Request">
+The request could not be processed due to invalid input. Common causes:
+- Missing or incorrect fields in the request.
+- Malformed JSON.
+  
+**Example Response**:
+<CodeBlock title="400 Response Example" language="json">
+```json
+{
+  "error": "Bad Request",
+  "message": "The 'locker_id' field is required."
+}
+```
+</CodeBlock>
+</Accordion>
+
+<Accordion title="401 Unauthorized">
+Authentication is required but missing or invalid. Ensure your API key or token is correctly included in the request header.
+
+**Example Response**:
+<CodeBlock title="401 Response Example" language="json">
+```json
+{
+  "error": "Unauthorized",
+  "message": "Invalid API key or token."
+}
+```
+</CodeBlock>
+
+<Callout type="tip" title="Common Cause">
+Check that the `Authorization` header includes a valid token in the format `Bearer your-access-token`.
+</Callout>
+</Accordion>
+
+<Accordion title="403 Forbidden">
+The client is authenticated, but does not have permission to access the requested resource.
+
+**Example Response**:
+<CodeBlock title="403 Response Example" language="json">
+```json
+{
+  "error": "Forbidden",
+  "message": "You do not have permission to access this locker."
+}
+```
+</CodeBlock>
+</Accordion>
+
+<Accordion title="404 Not Found">
+The requested resource does not exist. Verify URLs and resource identifiers.
+
+**Example Response**:
+<CodeBlock title="404 Response Example" language="json">
+```json
+{
+  "error": "Not Found",
+  "message": "Locker with ID '12345' not found."
+}
+```
+</CodeBlock>
+</Accordion>
+
+<Accordion title="429 Too Many Requests">
+The client has sent too many requests in a given amount of time. Wait before retrying the request, or reduce request frequency.
+
+**Example Response**:
+<CodeBlock title="429 Response Example" language="json">
+```json
+{
+  "error": "Too Many Requests",
+  "message": "You have exceeded the rate limit. Please wait before retrying."
+}
+```
+</CodeBlock>
+
+<Callout title="Tip" type="tip">
+Set up automatic retries with exponential backoff to handle 429 errors gracefully.
+</Callout>
+</Accordion>
+
+</AccordionGroup>
+
+</Tab>
+
+<Tab title="5xx Server Error Codes">
+
+### Server Errors
+
+<AccordionGroup>
+
+<Accordion title="500 Internal Server Error">
+An unexpected error occurred on the server. Retry the request after some time.
+
+**Example Response**:
+<CodeBlock title="500 Response Example" language="json">
+```json
+{
+  "error": "Internal Server Error",
+  "message": "An error occurred. Please try again later."
+}
+```
+</CodeBlock>
+
+<Callout title="What to Do" type="warning">
+If this error persists, contact support for assistance.
+</Callout>
+</Accordion>
+
+<Accordion title="502 Bad Gateway">
+The server received an invalid response from an upstream server. This is typically a temporary issue.
+
+**Example Response**:
+<CodeBlock title="502 Response Example" language="json">
+```json
+{
+  "error": "Bad Gateway",
+  "message": "Temporary issue connecting to the server. Please try again later."
+}
+```
+</CodeBlock>
+</Accordion>
+
+<Accordion title="503 Service Unavailable">
+The server is currently unable to handle the request, often due to temporary overload or maintenance.
+
+**Example Response**:
+<CodeBlock title="503 Response Example" language="json">
+```json
+{
+  "error": "Service Unavailable",
+  "message": "The server is currently unavailable. Please try again later."
+}
+```
+</CodeBlock>
+
+<Callout title="Tip" type="info">
+Implement retry logic with exponential backoff to handle 503 errors.
+</Callout>
+</Accordion>
+
+<Accordion title="504 Gateway Timeout">
+The server did not receive a timely response from an upstream server. This may indicate network issues.
+
+**Example Response**:
+<CodeBlock title="504 Response Example" language="json">
+```json
+{
+  "error": "Gateway Timeout",
+  "message": "The request timed out. Please try again later."
+}
+```
+</CodeBlock>
+</Accordion>
+
+</AccordionGroup>
+
+</Tab>
+
+</Tabs>
+
+---
+
+## Best Practices for Handling Errors
+
+<Callout title="Error Handling Tips" type="tip">
+To ensure robust error handling in your application, follow these best practices:
+</Callout>
+
+1. **Log Errors**: Capture and log error details, including HTTP status codes and error messages, for troubleshooting and analysis.
+2. **Implement Retries**: For `5xx` errors and `429 Too Many Requests`, implement retry logic with exponential backoff to avoid overwhelming the server.
+3. **Graceful Error Messages**: Display user-friendly error messages. Avoid exposing technical details directly to end-users.
+4. **Monitor Rate Limits**: Keep an eye on rate limits and adjust request frequencies to prevent `429 Too Many Requests` errors.
+5. **Alerting**: Set up alerts for recurring or critical errors (e.g., frequent `500 Internal Server Error` responses) to detect issues early.
+6. **Failover Handling**: In case of persistent server errors, consider failover strategies to alternative workflows or degraded services.
+
+---
+
+## Example Error Response Structure
+
+All error responses from the Safe Locker API follow a consistent JSON structure:
+
+<CodeBlock title="Error Response Structure" language="json">
+```json
+{
+  "error": "Error Type",
+  "message": "Detailed error message explaining the issue."
+}
+```
+</CodeBlock>
+
+| Field    | Type   | Description                                           |
+|----------|--------|-------------------------------------------------------|
+| `error`  | String | Type of error (e.g., "Bad Request", "Unauthorized").  |
+| `message`| String | Detailed message explaining the cause of the error.   |
