@@ -119,17 +119,6 @@
 			]
 		},
 		{
-			"group": "First Call",
-			"pages": [
-				"first-call/intro",
-				"first-call/keys",
-				"first-call/quick-start",
-				"first-call/testing",
-				"first-call/environments",
-				"first-call/structure"
-			]
-		},
-		{
 			"group": "API Documentation",
 			"pages": [
 				{
