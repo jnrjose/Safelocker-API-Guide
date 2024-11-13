@@ -1,0 +1,29 @@
+---
+title: "Create Locker"
+api: "POST /lockers"
+---
+<ParamField body="name" type="string" required/>
+<ParamField body="address" type="string" required/>
+
+<ResponseExample>
+```json
+{
+    "status": true,
+    "message": "Locker creation was successfully",
+    "data": {
+        "locker": {
+            "locker_id": "Fez-Locker-441b3d5e-7bf3-4f42-87c8-b3ea0ea42755",
+            "location_id": "1",
+            "type": "China",
+            "total_units": "50",
+            "max_weight_per_unit": "10",
+            "is_public": "1",
+            "created_by": 1,
+            "updated_at": "2024-09-23T12:48:40.000000Z",
+            "created_at": "2024-09-23T12:48:40.000000Z",
+            "id": 1
+        }
+    }
+}
+```
+</ResponseExample>

@@ -123,6 +123,12 @@
 						"sandbox/playground/location/getBy_id",
 						"sandbox/playground/location/delete"
 					]
+				},
+				{
+					"group": "Locker",
+					"pages": [
+						"sandbox/playground/locker/create"
+					]
 				}
 			]
 		}
