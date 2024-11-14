@@ -112,23 +112,55 @@
 			"pages": [
 				{
 					"group": "Getting Started",
-					"pages": ["sandbox/introduction", "sandbox/playground/auth/get_token"]
+					"pages": ["sandbox/introduction", "sandbox/auth/get_token"]
 				},
 				{
 					"group": "Location",
 					"pages": [
-						"sandbox/playground/location/create",
-						"sandbox/playground/location/update",
-						"sandbox/playground/location/get_all",
-						"sandbox/playground/location/getBy_id",
-						"sandbox/playground/location/delete"
+						"sandbox/location/create",
+						"sandbox/location/update",
+						"sandbox/location/get_all",
+						"sandbox/location/getBy_id",
+						"sandbox/location/delete"
 					]
 				},
 				{
 					"group": "Locker",
 					"pages": [
-						"sandbox/playground/locker/create"
+						"sandbox/locker/create",
+						"sandbox/locker/get",
+						"sandbox/locker/getbyid",
+						"sandbox/locker/availability"
 					]
+				},
+//				{
+//					"group": "Order",
+//					"pages": [
+//						"sandbox/order/create",
+//						"sandbox/order/get",
+//						"sandbox/order/getbyid",
+//						"sandbox/order/availability"
+//					]
+//				},
+				{
+					"group": "reservation",
+					"pages": [
+						"sandbox/reservation/create",
+						"sandbox/reservation/history",
+						"sandbox/reservation/invoice",
+						"sandbox/reservation/track",
+						"sandbox/reservation/update",
+						"sandbox/reservation/view"
+					]
+			
+				},
+				{
+					"group": "Transaction",
+					"pages": [
+						"sandbox/transaction/get",
+						"sandbox/transaction/getbyid"
+					]
+			
 				}
 			]
 		}
