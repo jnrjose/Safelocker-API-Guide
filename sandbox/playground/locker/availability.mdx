@@ -1,0 +1,17 @@
+---
+title: "Check Locker Availability"
+api: "GET /lockers/{id}/availability"
+---
+<ParamField path="id" type="string" required />
+
+<ResponseExample>
+```json
+{
+    "status": true,
+    "message": "Request successful",
+    "data": {
+        "is_available": true
+    }
+}
+```
+</ResponseExample>

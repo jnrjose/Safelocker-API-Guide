@@ -1,0 +1,43 @@
+---
+title: "Get All Lockers"
+api: "GET /lockers"
+---
+
+<ResponseExample>
+```json
+{
+    "status": true,
+    "message": "Request successful",
+    "data": {
+        "lockers": [
+            {
+                "id": 1,
+                "locker_id": "Fez-Locker-441b3d5e-7bf3-4f42-87c8-b3ea0ea42755",
+                "location_id": 1,
+                "type": "China",
+                "total_units": 50,
+                "max_weight_per_unit": 10,
+                "is_active": 1,
+                "is_public": 1,
+                "created_by": 1,
+                "created_at": "2024-09-23T12:48:40.000000Z",
+                "updated_at": "2024-09-23T12:48:40.000000Z"
+            },
+            {
+                "id": 2,
+                "locker_id": "Fez-Locker-7f1a1b69-c830-451c-b49e-81dd46a12740",
+                "location_id": 1,
+                "type": "US",
+                "total_units": 40,
+                "max_weight_per_unit": 5,
+                "is_active": 1,
+                "is_public": 0,
+                "created_by": 1,
+                "created_at": "2024-09-23T13:00:38.000000Z",
+                "updated_at": "2024-09-23T13:00:38.000000Z"
+            }
+        ]
+    }
+}
+```
+</ResponseExample>

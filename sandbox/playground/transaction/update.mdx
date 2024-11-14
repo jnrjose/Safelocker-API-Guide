@@ -1,0 +1,22 @@
+---
+title: "Update Locker Reservation"
+api: "PUT /orders/{reservation_id}"
+---
+<ParamField path="reservation_id" type="string" required />
+<ParamField body="start_date" type="string" />
+<ParamField body="end_date" type="string" />
+
+<ResponseExample>
+```json
+{
+    "status": true,
+    "message": "Reservation updated successfully",
+    "data": {
+        "reservation_id": "1",
+        "start_date": "2024-09-23T12:00:00.000Z",
+        "end_date": "2024-09-26T12:00:00.000Z",
+        "status": "CONFIRMED"
+    }
+}
+```
+</ResponseExample>

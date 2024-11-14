@@ -1,0 +1,29 @@
+---
+title: "Get Transaction by ID"
+api: "GET /transactions/{id}"
+---
+<ParamField path="id" type="string" required />
+
+<ResponseExample>
+```json
+{
+    "status": true,
+    "message": "Request successful",
+    "data": {
+        "transaction": {
+            "id": 4,
+            "wallet_id": 1,
+            "amount": "100000.00",
+            "currency": "NGN",
+            "type": "DEPOSIT",
+            "status": "PENDING",
+            "reference_id": "2w__ejruuioko09309a0",
+            "description": "Wallet top up",
+            "meta": "{ \"data\": { \"user\": { \"id\": 1, \"email\": \"prudence51@example.net\", \"phone\": \"08134809000\" } } }",
+            "created_at": "2024-09-27T05:30:14.000000Z",
+            "updated_at": "2024-09-27T05:30:14.000000Z"
+        }
+    }
+}
+```
+</ResponseExample>

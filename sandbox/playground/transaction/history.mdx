@@ -1,0 +1,31 @@
+---
+title: "Reservation History"
+api: "GET /orders/history"
+---
+
+<ResponseExample>
+```json
+{
+    "status": true,
+    "message": "History retrieved successfully",
+    "data": [
+        {
+            "reservation_id": "1",
+            "locker_id": "Fez-Locker-1234",
+            "user_id": "100",
+            "start_date": "2024-09-23T10:00:00.000Z",
+            "end_date": "2024-09-25T10:00:00.000Z",
+            "status": "COMPLETED"
+        },
+        {
+            "reservation_id": "2",
+            "locker_id": "Fez-Locker-5678",
+            "user_id": "101",
+            "start_date": "2024-09-26T10:00:00.000Z",
+            "end_date": "2024-09-29T10:00:00.000Z",
+            "status": "CANCELLED"
+        }
+    ]
+}
+```
+</ResponseExample>

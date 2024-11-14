@@ -1,0 +1,19 @@
+---
+title: "Track Locker Reservation"
+api: "GET /orders/{reservation_id}/track"
+---
+<ParamField path="reservation_id" type="string" required />
+
+<ResponseExample>
+```json
+{
+    "status": true,
+    "message": "Reservation tracking successful",
+    "data": {
+        "reservation_id": "1",
+        "status": "IN_TRANSIT",
+        "location": "Locker Facility A"
+    }
+}
+```
+</ResponseExample>

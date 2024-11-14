@@ -1,0 +1,31 @@
+---
+title: "Get Locker by ID"
+api: "GET /lockers/{id}"
+---
+<ParamField path="id" type="string" required />
+
+<ResponseExample>
+```json
+{
+    "status": true,
+    "message": "Request successful",
+    "data": {
+        "locker": {
+            "id": 2,
+            "locker_id": "Fez-Locker-7f1a1b69-c830-451c-b49e-81dd46a12740",
+            "location_id": 1,
+            "type": "US",
+            "total_units": 30,
+            "max_weight_per_unit": 5,
+            "is_active": 1,
+            "is_public": 1,
+            "client_id": null,
+            "created_by": 1,
+            "last_accessed": null,
+            "created_at": "2024-09-23T13:00:38.000000Z",
+            "updated_at": "2024-09-23T21:36:31.000000Z"
+        }
+    }
+}
+```
+</ResponseExample>
