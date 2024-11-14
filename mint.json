@@ -48,67 +48,6 @@
 		},
 		{
 			"group": "API Documentation",
-			"pages": ["sandbox/introduction"]
-		},
-		{
-			"group": "Sandbox",
-			"pages": ["sandbox/get", "sandbox/login", "sandbox/delete"]
-		}
-	],
-	"footerSocials": {
-		"x": "https://x.com/fezdelivery",
-		"instagram": "https://instagram.com",
-		"linkedin": "https://linkedin.com/company/fezdelivery"
-	},
-	"$schema": "https://mintlify.com/schema.json",
-	"name": "Starter Kit",
-	"logo": {
-		"dark": "/logo/Fezlogo_white.png",
-		"light": "/logo/fez-logo.png"
-	},
-	"favicon": "/logo/fezicon.png",
-	"colors": {
-		"primary": "#0D9373",
-		"light": "#07C983",
-		"dark": "#0D9373",
-		"anchors": {
-			"from": "#0D9373",
-			"to": "#07C983"
-		}
-	},
-	"topbarLinks": [
-		{
-			"name": "Support",
-			"url": "mailto:support@fezdelivery.co"
-		}
-	],
-	"topbarCtaButton": {
-		"name": "Get Started",
-		"url": "https://dashboard.fezdelivery.co"
-	},
-	"tabs": [
-		{
-			"name": "API Reference",
-			"url": "sandbox",
-			"icon": "square-terminal"
-		}
-	],
-	"navigation": [
-		{
-			"group": "Get Started",
-			"pages": [
-				"intro",
-				"quickstart",
-				"auth",
-				"environments",
-				"error",
-				"rate",
-				"Versioning",
-				"webhooks"
-			]
-		},
-		{
-			"group": "API Documentation",
 			"pages": [
 				{
 					"group": "Getting Started",
@@ -133,17 +72,8 @@
 						"sandbox/locker/availability"
 					]
 				},
-//				{
-//					"group": "Order",
-//					"pages": [
-//						"sandbox/order/create",
-//						"sandbox/order/get",
-//						"sandbox/order/getbyid",
-//						"sandbox/order/availability"
-//					]
-//				},
 				{
-					"group": "reservation",
+					"group": "Reservation",
 					"pages": [
 						"sandbox/reservation/create",
 						"sandbox/reservation/history",
@@ -152,7 +82,6 @@
 						"sandbox/reservation/update",
 						"sandbox/reservation/view"
 					]
-			
 				},
 				{
 					"group": "Transaction",
@@ -160,7 +89,6 @@
 						"sandbox/transaction/get",
 						"sandbox/transaction/getbyid"
 					]
-			
 				}
 			]
 		}
@@ -181,8 +109,7 @@
 	},
 	"pageedit": {
 		"suggestEdit": true,
-		"raiseIssue": true,
-		"thumbsRating": true
+		"raiseIssue": true
 	},
 	"versions": ["Beta 1"]
 }
