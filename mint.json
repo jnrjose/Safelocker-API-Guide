@@ -111,5 +111,10 @@
 		"suggestEdit": true,
 		"raiseIssue": true
 	},
+	"analytics": {
+		"ga4": {
+			"measurementId": "G-1JD7QK0YTZ"
+		}
+	},	
 	"versions": ["Beta 1"]
 }
